@@ -8,10 +8,10 @@ USER_DIR = ./test/
 
 # Set Google Test's header directory as a system directory, such that
 # the compiler doesn't generate warnings in Google Test headers.
-CPPFLAGS += -isystem $(GTEST_DIR)/include -I ./
+CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -pthread -std=c++11
+CXXFLAGS += -pthread -std=c++11 -O0
 
 COVFLAGS = -fprofile-arcs -ftest-coverage
 
@@ -25,13 +25,13 @@ TESTS = $(USER_DIR)unit-simple_test \
 
 all :
 	@echo "Only support the following"
-	@echo "make test"
 	@echo "make test_run"
 
-test: $(TESTS)
+test_run: pre $(TESTS)
+	lcov $(addprefix -a ,$(addsuffix .info, $(TESTS))) -o final.info
 
 clean:
-	rm -f $(TESTS) gtest.a gtest_main.a *.o $(USER_DIR)*.o *.gcov $(USER_DIR)*.gcov *.gcda $(USER_DIR)*.gcda *.gcno $(USER_DIR)*.gcno
+	rm -f $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info
 
 # Internal variables.
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
@@ -48,11 +48,18 @@ gtest.a : gtest-all.o
 	$(AR) $(ARFLAGS) $@ $^
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
+	mv gtest_main.a test/
 
 ################################
 # This is where the fun begins #
 ################################
 
+pre:
+	cp json.hpp test/
+
 $(USER_DIR)%: $(USER_DIR)%.cpp gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $^ -o $@
+	cd test/ && $(CXX) -isystem ../google-test/googletest/include $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) gtest_main.a -o $(subst test/,,$@)
+	$@
+	cd test/ && lcov -c -d . -o $(subst test/,,$@)_full.info
+	cd test/ && lcov -r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
 
