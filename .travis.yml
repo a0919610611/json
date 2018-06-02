@@ -6,7 +6,7 @@ env:
 addons:
   apt:
     sources: ['ubuntu-toolchain-r-test']
-    packages: ['g++-7', 'ninja-build']
+    packages: ['g++-7', 'ninja-build', 'lcov']
 os:
 - linux
 install:
