@@ -11,9 +11,9 @@ USER_DIR = ./test/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -pthread -std=c++11 -O0
+CXXFLAGS += -pthread -std=c++11 -O0 -g
 
-COVFLAGS = -fprofile-arcs -ftest-coverage
+COVFLAGS = --coverage
 
 # All Google Test headers.
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
@@ -29,10 +29,11 @@ all :
 
 test_run: pre $(TESTS)
 	lcov $(addprefix -a ,$(addsuffix .info, $(TESTS))) $(LCOV_FLAGS) -o final.info
+	genhtml -o html final.info
 
 clean:
-	rm -f $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info
-
+	rm -f $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info $(USER_DIR)json.hpp final.info
+	rm -rf html
 # Internal variables.
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 
@@ -62,4 +63,3 @@ $(USER_DIR)%: $(USER_DIR)%.cpp gtest_main.a
 	$@
 	cd test/ && lcov $(LCOV_FLAGS) -c -d . -o $(subst test/,,$@)_full.info
 	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
-
