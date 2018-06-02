@@ -22,7 +22,8 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 
 # All tests produced by this Makefile.
 TESTS = $(USER_DIR)unit-simple_test \
-		$(USER_DIR)unit-stronger_test
+		$(USER_DIR)unit-stronger_test \
+		$(USER_DIR)unit-wstring
 
 all :
 	@echo "Only support the following"
