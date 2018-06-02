@@ -10,6 +10,13 @@ https://hackmd.io/s/H12MTt0y7
 - 0416223 許賀傑
 - 0416093 林宗毅
 
+## develop guild
+
+### git hooks
+```
+cp hooks/* .git/hooks
+```
+
 ## How to compile a generic program
 ```
 # Include "json.hpp" in your source code
