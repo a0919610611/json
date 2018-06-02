@@ -2,18 +2,23 @@ language: cpp
 compiler:
 - g++
 env:
-- CXX=g++-7
+- CXX=g++-8
 addons:
   apt:
     sources: ['ubuntu-toolchain-r-test']
-    packages: ['g++-7', 'ninja-build', 'lcov']
+    packages: ['g++-8', 'ninja-build', 'lcov']
 os:
 - linux
 install:
 - sudo pip install codecov
 script:
-- export CXX="g++-7"
-- export LCOV_FLAGS="--gcov-tool /usr/bin/gcov-7"
+- export CXX="g++-8"
+- export LCOV_FLAGS="--gcov-tool /usr/bin/gcov-8"
+# Build lcov
+- git clone https://github.com/linux-test-project/lcov
+  cd lcov
+  sudo make install
+  cd ..
 - make test_run
 branches:
   only:

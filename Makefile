@@ -61,5 +61,5 @@ $(USER_DIR)%: $(USER_DIR)%.cpp gtest_main.a
 	cd test/ && $(CXX) -isystem ../google-test/googletest/include $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) gtest_main.a -o $(subst test/,,$@)
 	$@
 	cd test/ && lcov $(LCOV_FLAGS) -c -d . -o $(subst test/,,$@)_full.info
-	cd test/ && lcov $(LCOV_FLAGS)-r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
 
