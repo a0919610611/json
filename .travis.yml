@@ -2,7 +2,7 @@ language: cpp
 compiler:
 - g++
 env:
-- COMPILER=g++-7
+- CXX=g++-7
 addons:
   apt:
     sources: ['ubuntu-toolchain-r-test']
@@ -12,6 +12,7 @@ os:
 install:
 - sudo pip install codecov
 script:
+- export CXX="g++-7"
 - make test_run
 branches:
   only:
