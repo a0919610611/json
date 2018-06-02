@@ -20,8 +20,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
 # All tests produced by this Makefile.
-TESTS = $(USER_DIR)unit-simple_test \
-		$(USER_DIR)unit-stronger_test
+TESTS = $(USER_DIR)unit-algorithms \
 
 all :
 	@echo "Only support the following"
@@ -63,3 +62,4 @@ $(USER_DIR)%: $(USER_DIR)%.cpp gtest_main.a
 	$@
 	cd test/ && lcov $(LCOV_FLAGS) -c -d . -o $(subst test/,,$@)_full.info
 	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+
