@@ -1,6 +1,12 @@
 language: cpp
 compiler:
 - g++
+env:
+- COMPILER=g++-7
+addons:
+  apt:
+    sources: ['ubuntu-toolchain-r-test']
+    packages: ['g++-7', 'ninja-build']
 os:
 - linux
 install:

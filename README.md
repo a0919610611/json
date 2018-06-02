@@ -1,4 +1,6 @@
 [![JSON for Modern C++](https://raw.githubusercontent.com/nlohmann/json/master/doc/json.gif)](https://github.com/nlohmann/json/releases)
+[![Build Status](https://travis-ci.org/a0919610611/json.svg?branch=develop)](https://travis-ci.org/a0919610611/json)
+
 ## Develop Progress
 https://hackmd.io/s/H12MTt0y7
 
