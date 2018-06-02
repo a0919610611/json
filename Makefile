@@ -28,7 +28,7 @@ all :
 	@echo "make test_run"
 
 test_run: pre $(TESTS)
-	lcov $(addprefix -a ,$(addsuffix .info, $(TESTS))) -o final.info
+	lcov $(addprefix -a ,$(addsuffix .info, $(TESTS))) $(LCOV_FLAGS) -o final.info
 
 clean:
 	rm -f $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info
@@ -60,6 +60,6 @@ pre:
 $(USER_DIR)%: $(USER_DIR)%.cpp gtest_main.a
 	cd test/ && $(CXX) -isystem ../google-test/googletest/include $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) gtest_main.a -o $(subst test/,,$@)
 	$@
-	cd test/ && lcov -c -d . -o $(subst test/,,$@)_full.info
-	cd test/ && lcov -r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+	cd test/ && lcov $(LCOV_FLAGS) -c -d . -o $(subst test/,,$@)_full.info
+	cd test/ && lcov $(LCOV_FLAGS)-r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
 

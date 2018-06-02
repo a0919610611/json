@@ -13,6 +13,7 @@ install:
 - sudo pip install codecov
 script:
 - export CXX="g++-7"
+- export LCOV_FLAGS="--gcov-tool /usr/bin/gcov-7"
 - make test_run
 branches:
   only:
