@@ -16,9 +16,9 @@ script:
 - export LCOV_FLAGS="--gcov-tool /usr/bin/gcov-8"
 # Build lcov
 - git clone https://github.com/linux-test-project/lcov
-  cd lcov
-  sudo make install
-  cd ..
+- cd lcov
+- sudo make install
+- cd ..
 - make test_run
 branches:
   only:
