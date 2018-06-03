@@ -26,6 +26,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-capacity \
 		$(USER_DIR)unit-concepts \
 		$(USER_DIR)unit-merge_patch \
+		$(USER_DIR)unit-meta \
 		$(USER_DIR)unit-readme \
 		$(USER_DIR)unit-wstring
 
