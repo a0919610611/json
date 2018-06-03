@@ -24,6 +24,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-alt-string \
 		$(USER_DIR)unit-capacity \
+		$(USER_DIR)unit-concepts \
 		$(USER_DIR)unit-readme \
 		$(USER_DIR)unit-wstring
 
