@@ -31,6 +31,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-readme \
 		$(USER_DIR)unit-reference_access \
 		$(USER_DIR)unit-serialization \
+		$(USER_DIR)unit-to_chars \
 		$(USER_DIR)unit-udt \
 		$(USER_DIR)unit-unicode \
 		$(USER_DIR)unit-wstring
