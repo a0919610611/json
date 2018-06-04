@@ -30,6 +30,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-meta \
 		$(USER_DIR)unit-readme \
 		$(USER_DIR)unit-reference_access \
+		$(USER_DIR)unit-serialization \
 		$(USER_DIR)unit-wstring
 
 all :
