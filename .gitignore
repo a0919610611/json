@@ -3,4 +3,6 @@
 *.gcda
 *.gcov
 *.a
-test/json.hpps
+*.swp
+test/json.hpp
+test/helper.hpp
