@@ -25,6 +25,10 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-alt-string \
 		$(USER_DIR)unit-capacity \
 		$(USER_DIR)unit-cbor \
+		$(USER_DIR)unit-concepts \
+		$(USER_DIR)unit-merge_patch \
+		$(USER_DIR)unit-meta \
+		$(USER_DIR)unit-readme \
 		$(USER_DIR)unit-wstring
 
 all :
@@ -64,4 +68,3 @@ $(USER_DIR)%: $(USER_DIR)%.cpp $(MKFILE_DIR)gtest_main.a
 	$@
 	cd test/ && lcov $(LCOV_FLAGS) -c -d . -o $(subst test/,,$@)_full.info
 	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
-
