@@ -27,6 +27,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-cbor \
 		$(USER_DIR)unit-class_const_iterator \
 		$(USER_DIR)unit-class_iterator \
+		$(USER_DIR)unit-class_lexer \
 		$(USER_DIR)unit-concepts \
 		$(USER_DIR)unit-merge_patch \
 		$(USER_DIR)unit-meta \
