@@ -32,6 +32,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-comparison \
 		$(USER_DIR)unit-concepts \
 		$(USER_DIR)unit-constructor1 \
+		$(USER_DIR)unit-constructor2 \
 		$(USER_DIR)unit-merge_patch \
 		$(USER_DIR)unit-meta \
 		$(USER_DIR)unit-modifiers \
