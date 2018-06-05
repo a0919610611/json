@@ -37,6 +37,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-convenience \
 		$(USER_DIR)unit-deserialization \
 		$(USER_DIR)unit-element_access1 \
+		$(USER_DIR)unit-element_access2 \
 		$(USER_DIR)unit-merge_patch \
 		$(USER_DIR)unit-meta \
 		$(USER_DIR)unit-modifiers \
