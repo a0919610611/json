@@ -9,7 +9,7 @@ USER_DIR = ./test/
 
 # Set Google Test's header directory as a system directory, such that
 # the compiler doesn't generate warnings in Google Test headers.
-CPPFLAGS += -isystem $(GTEST_DIR)/include -isystem $(MKFILE_DIR)/include
+CPPFLAGS += -isystem $(GTEST_DIR)/include -isystem $(MKFILE_DIR)include
 
 # Flags passed to the C++ compiler.
 CXXFLAGS += -pthread -std=c++11 -O0 -g
@@ -106,5 +106,5 @@ $(USER_DIR)%: $(USER_DIR)%.cpp $(MKFILE_DIR)gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) $(MKFILE_DIR)gtest_main.a -o $(subst test/,,$@)  && \
 	./$(subst test/,,$@) && \
 	lcov $(LCOV_FLAGS)  -c -d . -o ../$(subst test/,,$@)_full.info
-	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '$(MKFILE_DIR)/include/fifo_map.hpp' '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+	cd test/ && lcov $(LCOV_FLAGS) -e $(subst test/,,$@)_full.info '$(MKFILE_DIR)include/json.hpp' -o $(subst test/,,$@).info
 
