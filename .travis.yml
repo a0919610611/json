@@ -3,8 +3,6 @@ compiler:
 - g++
 env:
 - CXX=g++-8
-  global:
-    - MAKEFLAGS="-j 2"
 addons:
   apt:
     sources: ['ubuntu-toolchain-r-test']
@@ -21,7 +19,7 @@ script:
 - cd lcov
 - sudo make install
 - cd ..
-- make test_run
+- make -j2 test_run
 branches:
   only:
   - develop
