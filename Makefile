@@ -16,6 +16,9 @@ CXXFLAGS += -pthread -std=c++11 -O0 -g
 
 COVFLAGS = --coverage
 
+LCOVFLAGS = --no-recursion --rc genhtml_branch_coverage=1
+
+
 # All Google Test headers.
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -71,7 +74,7 @@ test_run: $(TESTS)
 	genhtml --rc genhtml_branch_coverage=1 -o html final.info
 
 clean:
-	rm -f $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info  final.info
+	rm -rf $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info  final.info
 	rm -rf html
 # Internal variables.
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
@@ -95,7 +98,13 @@ $(MKFILE_DIR)gtest_main.a : $(MKFILE_DIR)gtest-all.o $(MKFILE_DIR)gtest_main.o
 
 
 $(USER_DIR)%: $(USER_DIR)%.cpp $(MKFILE_DIR)gtest_main.a
-	cd test/ && $(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) $(MKFILE_DIR)gtest_main.a -o $(subst test/,,$@)
-	$@
-	cd test/ && lcov $(LCOV_FLAGS) --rc lcov_branch_coverage=1 -c -d . -o $(subst test/,,$@)_full.info
-	cd test/ && lcov $(LCOV_FLAGS) --rc lcov_branch_coverage=1 -r $(subst test/,,$@)_full.info '$(PWD)/*.cpp' '$(MKFILE_DIR)include/fifo_map.hpp' '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+	cd test && \
+	mkdir -p $(subst test/,,$@) && \
+	cp $(subst test/,,$<) $(subst test/,,$@) && \
+	cd $(subst test/,,$@) && \
+	ln -fs ../../test .	&& \
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) $(MKFILE_DIR)gtest_main.a -o $(subst test/,,$@)  && \
+	./$(subst test/,,$@) && \
+	lcov $(LCOV_FLAGS) -c -d . -o ../$(subst test/,,$@)_full.info
+	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '$(MKFILE_DIR)/include/fifo_map.hpp' '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+

@@ -3,6 +3,8 @@ compiler:
 - g++
 env:
 - CXX=g++-8
+  global:
+    - MAKEFLAGS="-j 2"
 addons:
   apt:
     sources: ['ubuntu-toolchain-r-test']
