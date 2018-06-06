@@ -16,7 +16,7 @@ CXXFLAGS += -pthread -std=c++11 -O0 -g
 
 COVFLAGS = --coverage
 
-LCOV_FLAGS += --no-recursion --rc genhtml_branch_coverage=1
+LCOV_FLAGS += --no-recursion --rc lcov_branch_coverage=1
 
 
 # All Google Test headers.
