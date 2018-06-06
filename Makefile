@@ -49,6 +49,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-modifiers \
 		$(USER_DIR)unit-msgpack \
 		$(USER_DIR)unit-noexcept \
+		$(USER_DIR)unit-pointer_access \
 		$(USER_DIR)unit-readme \
 		$(USER_DIR)unit-reference_access \
 		$(USER_DIR)unit-serialization \
