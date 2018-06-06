@@ -52,6 +52,7 @@ TESTS = $(USER_DIR)unit-algorithms \
 		$(USER_DIR)unit-pointer_access \
 		$(USER_DIR)unit-readme \
 		$(USER_DIR)unit-reference_access \
+		$(USER_DIR)unit-regression \
 		$(USER_DIR)unit-serialization \
 		$(USER_DIR)unit-to_chars \
 		$(USER_DIR)unit-testsuites\
@@ -96,4 +97,4 @@ $(USER_DIR)%: $(USER_DIR)%.cpp $(MKFILE_DIR)gtest_main.a
 	cd test/ && $(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) $(MKFILE_DIR)gtest_main.a -o $(subst test/,,$@)
 	$@
 	cd test/ && lcov $(LCOV_FLAGS) -c -d . -o $(subst test/,,$@)_full.info
-	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '$(MKFILE_DIR)/include/fifo_map.hpp' '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
