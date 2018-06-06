@@ -105,6 +105,6 @@ $(USER_DIR)%: $(USER_DIR)%.cpp $(MKFILE_DIR)gtest_main.a
 	ln -fs ../../test .	&& \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) $(MKFILE_DIR)gtest_main.a -o $(subst test/,,$@)  && \
 	./$(subst test/,,$@) && \
-	lcov $(LCOV_FLAGS) -c -d . -o ../$(subst test/,,$@)_full.info
-	cd test/ && lcov $(LCOV_FLAGS) -r $(subst test/,,$@)_full.info '$(MKFILE_DIR)/include/fifo_map.hpp' '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+	lcov $(LCOVFLAGS) -c -d . -o ../$(subst test/,,$@)_full.info
+	cd test/ && lcov $(LCOVFLAGS) -r $(subst test/,,$@)_full.info '$(MKFILE_DIR)/include/fifo_map.hpp' '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
 
