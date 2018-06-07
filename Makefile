@@ -16,8 +16,6 @@ CXXFLAGS += -pthread -std=c++11 -O0 -g
 
 COVFLAGS = --coverage
 
-LCOV_FLAGS += --rc lcov_branch_coverage=1
-
 
 # All Google Test headers.
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
@@ -73,7 +71,7 @@ all :
 test_run: $(TESTS)
 	cd test && lcov $(LCOV_FLAGS) -d . -c -o ../final_full.info
 	cd test/ && lcov $(LCOV_FLAGS) -e ../final_full.info '$(MKFILE_DIR)include/json.hpp' -o ../final.info
-	genhtml  --legend --rc genhtml_branch_coverage=1 -o html final.info
+	genhtml  --legend -o html final.info
 
 clean:
 	rm -rf $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info *.info
