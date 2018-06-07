@@ -68,14 +68,18 @@ all :
 	@echo "Only support the following"
 	@echo "make test_run"
 
-test_run: $(TESTS)
+test_run: $(TESTS) system_test
 	cd test && lcov $(LCOV_FLAGS) -d . -c -o ../final_full.info
 	cd test/ && lcov $(LCOV_FLAGS) -e ../final_full.info '$(MKFILE_DIR)include/json.hpp' -o ../final.info
 	genhtml  --legend -o html final.info
 
+system_test:
+	make -C $(USER_DIR)system test
+
 clean:
 	rm -rf $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info *.info
 	rm -rf html
+	make -C $(USER_DIR)system  clean
 # Internal variables.
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 
