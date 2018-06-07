@@ -587,11 +587,11 @@ namespace
 
 			//TEST(constructors,"exception in case of a non-number type")
 			{
-				//CHECK_THROWS_AS(json(json::value_t::null).get<json::number_integer_t>(), json::type_error&);
-				//CHECK_THROWS_AS(json(json::value_t::object).get<json::number_integer_t>(), json::type_error&);
-				//CHECK_THROWS_AS(json(json::value_t::array).get<json::number_integer_t>(), json::type_error&);
-				//CHECK_THROWS_AS(json(json::value_t::string).get<json::number_integer_t>(), json::type_error&);
-				//CHECK_THROWS_AS(json(json::value_t::boolean).get<json::number_integer_t>(), json::type_error&);
+				EXPECT_THROW(json(json::value_t::null).get<json::number_integer_t>(), json::type_error);
+				EXPECT_THROW(json(json::value_t::object).get<json::number_integer_t>(), json::type_error);
+				EXPECT_THROW(json(json::value_t::array).get<json::number_integer_t>(), json::type_error);
+				EXPECT_THROW(json(json::value_t::string).get<json::number_integer_t>(), json::type_error);
+				EXPECT_THROW(json(json::value_t::boolean).get<json::number_integer_t>(), json::type_error);
 
 				//CHECK_THROWS_WITH(json(json::value_t::null).get<json::number_integer_t>(),
 								  //"[json.exception.type_error.302] type must be number, but is null");
