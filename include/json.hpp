@@ -2066,7 +2066,7 @@ class lexer
                 return "end of input";
             case token_type::literal_or_value:
                 return "'[', '{', or a literal";
-            default: // catch non-enum values
+            default: // catch non-enum values // LCOV_EXCL_LINE
                 return "unknown token"; // LCOV_EXCL_LINE
         }
     }
@@ -2719,7 +2719,7 @@ class lexer
                 goto scan_number_any1;
             }
 
-            default:
+            default: // LCOV_EXCL_LINE
             {
                 // all other characters are rejected outside scan_number()
                 assert(false); // LCOV_EXCL_LINE
@@ -3569,15 +3569,15 @@ class json_sax_dom_parser : public json_sax<BasicJsonType>
             {
                 case 1:
                     JSON_THROW(*reinterpret_cast<const detail::parse_error*>(&ex));
-                case 2:
+                case 2: // LCOV_EXCL_LINE
                     JSON_THROW(*reinterpret_cast<const detail::invalid_iterator*>(&ex));  // LCOV_EXCL_LINE
-                case 3:
+                case 3: // LCOV_EXCL_LINE
                     JSON_THROW(*reinterpret_cast<const detail::type_error*>(&ex));  // LCOV_EXCL_LINE
                 case 4:
                     JSON_THROW(*reinterpret_cast<const detail::out_of_range*>(&ex));
-                case 5:
+                case 5: // LCOV_EXCL_LINE
                     JSON_THROW(*reinterpret_cast<const detail::other_error*>(&ex));  // LCOV_EXCL_LINE
-                default:
+                default: // LCOV_EXCL_LINE
                     assert(false);  // LCOV_EXCL_LINE
             }
         }
@@ -3827,15 +3827,15 @@ class json_sax_dom_callback_parser : public json_sax<BasicJsonType>
             {
                 case 1:
                     JSON_THROW(*reinterpret_cast<const detail::parse_error*>(&ex));
-                case 2:
+                case 2: // LCOV_EXCL_LINE
                     JSON_THROW(*reinterpret_cast<const detail::invalid_iterator*>(&ex));  // LCOV_EXCL_LINE
-                case 3:
+                case 3: // LCOV_EXCL_LINE
                     JSON_THROW(*reinterpret_cast<const detail::type_error*>(&ex));  // LCOV_EXCL_LINE
                 case 4:
                     JSON_THROW(*reinterpret_cast<const detail::out_of_range*>(&ex));
-                case 5:
+                case 5: // LCOV_EXCL_LINE
                     JSON_THROW(*reinterpret_cast<const detail::other_error*>(&ex));  // LCOV_EXCL_LINE
-                default:
+                default: // LCOV_EXCL_LINE
                     assert(false);  // LCOV_EXCL_LINE
             }
         }
@@ -5697,7 +5697,7 @@ class binary_reader
                 result = parse_ubjson_internal();
                 break;
 
-            default:
+            default: // LCOV_EXCL_LINE
                 assert(false);  // LCOV_EXCL_LINE
         }
 
@@ -17957,7 +17957,7 @@ class basic_json
                         break;
                     }
 
-                    default:
+                    default: // LCOV_EXCL_LINE
                     {
                         // if there exists a parent it cannot be primitive
                         assert(false);  // LCOV_EXCL_LINE
