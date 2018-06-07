@@ -99,3 +99,4 @@ $(USER_DIR)%: $(USER_DIR)%.cpp $(MKFILE_DIR)gtest_main.a
 	$@
 	cd test/ && lcov $(LCOV_FLAGS) --rc lcov_branch_coverage=1 -c -d . -o $(subst test/,,$@)_full.info
 	cd test/ && lcov $(LCOV_FLAGS) --rc lcov_branch_coverage=1 -r $(subst test/,,$@)_full.info '$(PWD)/*.cpp' '$(MKFILE_DIR)include/fifo_map.hpp' '/usr/lib/*' '/usr/include/*' '$(PWD)/google-test/googletest/include/*' -o $(subst test/,,$@).info
+	cd test/ && lcov $(LCOV_FLAGS) -z -d .
