@@ -26,6 +26,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 # All tests produced by this Makefile.
 TESTS = $(USER_DIR)unit-unicode \
 		$(USER_DIR)unit-algorithms \
+		$(USER_DIR)unit-allocator \
 		$(USER_DIR)unit-alt-string \
 		$(USER_DIR)unit-capacity \
 		$(USER_DIR)unit-cbor \
