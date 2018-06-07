@@ -16,7 +16,7 @@ CXXFLAGS += -pthread -std=c++11 -O0 -g
 
 COVFLAGS = --coverage
 
-LCOV_FLAGS += --no-recursion --rc lcov_branch_coverage=1
+LCOV_FLAGS += --rc lcov_branch_coverage=1
 
 
 # All Google Test headers.
@@ -71,11 +71,12 @@ all :
 	@echo "make test_run"
 
 test_run: $(TESTS)
-	lcov $(addprefix -a ,$(addsuffix .info, $(TESTS))) $(LCOV_FLAGS) --rc lcov_branch_coverage=1 -o final.info
+	cd test && lcov $(LCOV_FLAGS) -d . -c -o ../final_full.info
+	cd test/ && lcov $(LCOV_FLAGS) -e ../final_full.info '$(MKFILE_DIR)include/json.hpp' -o ../final.info
 	genhtml  --legend --rc genhtml_branch_coverage=1 -o html final.info
 
 clean:
-	rm -rf $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info  final.info
+	rm -rf $(TESTS) gtest.a $(USER_DIR)gtest_main.a *.o $(USER_DIR)*.o $(USER_DIR)*.gcov $(USER_DIR)*.gcda $(USER_DIR)*.gcno $(USER_DIR)*.info *.info
 	rm -rf html
 # Internal variables.
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
@@ -104,9 +105,6 @@ $(USER_DIR)%: $(USER_DIR)%.cpp $(MKFILE_DIR)gtest_main.a
 	cp $(subst test/,,$<) $(subst test/,,$@) && \
 	cd $(subst test/,,$@) && \
 	ln -fs ../../test .	&& \
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) $(MKFILE_DIR)gtest_main.a -o $(subst test/,,$@)  && \
-	./$(subst test/,,$@) && \
-	lcov $(LCOV_FLAGS)  -c -d . -o ../$(subst test/,,$@)_full.info
-	cd test/ && lcov $(LCOV_FLAGS) -e $(subst test/,,$@)_full.info '$(MKFILE_DIR)include/json.hpp' -o $(subst test/,,$@).info
-	cd test/ && lcov $(LCOV_FLAGS) -z -d .
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(COVFLAGS) -lpthread $(subst test/,,$<) $(MKFILE_DIR)gtest_main.a -o $(subst test/,,$@) && \
+	./$(subst test/,,$@)
 
