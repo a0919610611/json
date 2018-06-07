@@ -21,11 +21,9 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
 # All tests produced by this Makefile.
-#TESTS = $(USER_DIR)unit-algorithms \
-		#$(USER_DIR)unit-allocator \
-		#$(USER_DIR)unit-wstring
-
-TESTS = $(USER_DIR)unit-allocator \
+TESTS = $(USER_DIR)unit-algorithms \
+		$(USER_DIR)unit-allocator \
+		$(USER_DIR)unit-wstring
 
 all :
 	@echo "Only support the following"
