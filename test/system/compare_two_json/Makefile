@@ -10,8 +10,8 @@ CPPFLAGS += -isystem $(MKFILE_DIR)../../../include
 OBJECT = compare_two_json
 
 TESTCASE= \
-	$(TESTCASE_DIR)1 \
-	$(TESTCASE_DIR)2
+		  $(TESTCASE_DIR)1 \
+		  $(TESTCASE_DIR)2
 
 
 
@@ -23,9 +23,9 @@ $(OBJECT): $(OBJECT).cpp
 
 test: $(OBJECT)
 	for testcase in $(TESTCASE); \
-	do \
+		do \
 		diff <( ./$(OBJECT) < $${testcase}.in) $${testcase}.out; \
-	done
+		done
 
 
 clean:
