@@ -2,13 +2,20 @@
 [![Build Status](https://travis-ci.org/a0919610611/json.svg?branch=develop)](https://travis-ci.org/a0919610611/json)
 [![codecov](https://codecov.io/gh/a0919610611/json/branch/develop/graph/badge.svg)](https://codecov.io/gh/a0919610611/json)
 
-## Develop Progress
-https://hackmd.io/s/H12MTt0y7
+## Links
+[Hackmd/Report](https://hackmd.io/s/H12MTt0y7)
+
+[Travis-ci](https://travis-ci.org/a0919610611/json)
+
+[Codecov](https://codecov.io/gh/a0919610611/json)
+
+[lcov Report](https://twleo.com/json/include/json.hpp.gcov.html)
+
+[Slide](https://docs.google.com/presentation/d/1gcGfzOqwoCQ0D9C8agdzT0OjKqlOE4lVQbTsVep5QMk/edit?usp=sharing)
 
 ## Team Member
 - 0416031 傅裕夫
 - 0416223 許賀傑
-- 0416093 林宗毅
 
 ## Develop Guide
 
@@ -16,6 +23,10 @@ https://hackmd.io/s/H12MTt0y7
 ```
 cp hooks/* .git/hooks
 ```
+
+### Compile and Run all test
+- Make sure you have gcc-7 and newest lcov installed
+- In the repo directory simply run `make test_run`
 
 ## How to compile a generic program
 ```
