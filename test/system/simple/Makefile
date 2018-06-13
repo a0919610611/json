@@ -9,8 +9,7 @@ CPPFLAGS += -isystem $(MKFILE_DIR)../../../include
 
 OBJECT = system1
 
-TESTCASE= $(TESTCASE_DIR)1 \
-		  $(TESTCASE_DIR)2
+TESTCASE= $(TESTCASE_DIR)1
 
 
 .PHONY: test clean
